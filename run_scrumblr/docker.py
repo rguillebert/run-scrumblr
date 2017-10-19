@@ -25,4 +25,4 @@ def run_redis_for_container(container_name):
 
     redis_container_name = container_name + "_redis"
     result = sh.docker.run("-d", "--name", redis_container_name, "redis:latest")
-    return str(result)
+    return str(result).strip()

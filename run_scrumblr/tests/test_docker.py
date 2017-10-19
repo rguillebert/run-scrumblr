@@ -15,3 +15,11 @@ def test_build_image(tmpdir):
     run_scrumblr.docker.build_image(tmpdir, tag)
 
     assert run_scrumblr.docker.object_exists(tag)
+
+
+def test_run_redis_for_container(tmpdir):
+    container_name = str(uuid.uuid4())
+
+    container_id = run_scrumblr.docker.run_redis_for_container(container_name)
+
+    assert run_scrumblr.docker.object_exists(container_id)
