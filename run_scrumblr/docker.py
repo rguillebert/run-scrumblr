@@ -25,6 +25,11 @@ def pull_image(image):
     sh.docker.pull(image)
 
 
+def stop_container(container_name):
+    """Stops a running docker container"""
+    sh.docker.stop(container_name)
+
+
 def run_redis_for_container(container_name):
     """Start the redis container for the (not yet running) container
     'container_name' and return the container_id"""
@@ -49,3 +54,14 @@ def run_scrumblr_container(tag, container_name, redis_container_name):
 
     container_info = inspect(container_id)
     return container_info['NetworkSettings']['Ports']['80/tcp'][0]['HostPort']
+
+
+def stop_scrumblr_container(scrumblr_container_name):
+    """Stop a running scrumblr container"""
+    stop_container(scrumblr_container_name)
+
+
+def stop_redis_container(scrumblr_container_name):
+    """Stop a running redis container associated with a scrumblr one"""
+    container_name = scrumblr_container_name + "_redis"
+    stop_container(container_name)

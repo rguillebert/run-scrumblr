@@ -24,5 +24,6 @@ def deploy_repository(repository, commit):
     port = docker.run_scrumblr_container(docker_tag, scrumblr_container_name, redis_container_name)
 
     print("The container is now running and available at http://localhost:{}".format(port))
+    print("You can stop this container by running run_scrumblr stop {}".format(scrumblr_container_name))
 
-    return port
+    return scrumblr_container_name, port
