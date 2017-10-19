@@ -16,7 +16,7 @@ def deploy_repository(repository, commit):
 
     if not docker.object_exists(docker_tag):
         git.clone_and_checkout(repository, repo_directory, commit)
-        docker.build_image(repository, docker_tag)
+        docker.build_image(repo_directory, docker_tag)
 
     scrumblr_container_name = str(uuid.uuid4())
 
